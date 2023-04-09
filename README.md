@@ -1,0 +1,1 @@
+A barebones react template for personal use.
