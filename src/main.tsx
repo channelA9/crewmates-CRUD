@@ -4,23 +4,32 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import "./index.css";
 
-import Other from "./routes/Other";
-import Dashboard from "./routes/Dashboard";
-import Board from "./components/Board";
+import Handler from "./routes/Handler";
+import Home from "./routes/Home";
+import Create from "./routes/Create";
+import Gallery from "./routes/Gallery";
+import Edit from "./routes/Edit";
+import View from "./routes/View";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App/>}>
-        <Route path="" element={<Dashboard/>} />
-        <Route path="other" element={<Other/>}>
-          <Route index element={<h3>Please select another from the Dashboard.</h3>} />
-          <Route path=":id" element={<Board/>} />  
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="" element={<Home />} />
+          <Route path="create" element={<Create />} />
+          <Route path="crewmates" element={<Gallery />} />
+          <Route path="edit" element={<Handler/>}>
+            <Route path=":id" element={<Edit />} />
+            <Route path="*" element={<h3>???</h3>} />
+          </Route>
+          <Route path="view" element={<Handler/>}>
+            <Route path=":id" element={<View />} />
+            <Route path="*" element={<h3>???</h3>} />
+          </Route>
+          <Route path="*" element={<h3>???</h3>} />
         </Route>
-        <Route path="*" element={<h3>???</h3>} />
-      </Route>
-    </Routes>
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
